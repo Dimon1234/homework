@@ -1,9 +1,5 @@
 package homework.hw0304;
 
-
-import java.util.stream.LongStream;
-
-
 /**
  * Сортировка слиянием (нисходящая??)
  */
@@ -30,12 +26,13 @@ public class MergeSort {
      * 2. сортируем левую половину и правую половину
      * 3. мёржим две половины
      * <p>
-     * @param workSpace - массив, на который ориентируемся
+     *
+     * @param workSpace  - массив, на который ориентируемся
      * @param lowerBound - нижняя граница
      * @param upperBound - верхняя граница
      */
     private static void recMergeSort(long[] workSpace, int lowerBound, int upperBound) {
-        if (lowerBound != upperBound){
+        if (lowerBound != upperBound) {
             int mid = (lowerBound + upperBound) / 2;
             recMergeSort(workSpace, lowerBound, mid);
             recMergeSort(workSpace, mid + 1, upperBound);
@@ -49,9 +46,10 @@ public class MergeSort {
      * 3. Добавляем оставшиеся элементы либо с правой, либо с левой половинки
      * 4. Записываем результат мержа в исходный массив
      * <p>
-     * @param workspace - массив, который будем сортировать
-     * @param low - указатель для левой половины массива
-     * @param high - указатель для правой половины массива
+     *
+     * @param workspace  - массив, который будем сортировать
+     * @param low        - указатель для левой половины массива
+     * @param high       - указатель для правой половины массива
      * @param upperBound - верхняя граница (относительно ихсодного)
      */
     private static void merge(long[] workspace, int low, int high, int upperBound) {
