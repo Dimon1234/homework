@@ -11,6 +11,11 @@ package homework.hw0304;
  * То есть, сложность в лучшем случае тоже будет равна n*log(n)
  *
  */
+
+
+/**
+ * Восходящая сортировка слиянием
+ */
 public class MergeSortV2 {
     private static long[] array;
 
@@ -25,33 +30,26 @@ public class MergeSortV2 {
      */
     private static void mergeSort() {
         long[] workSpace = array.clone();
-        recMergeSort(workSpace, 0, workSpace.length - 1);
+        iterMergeSort(workSpace, workSpace.length - 1);
     }
 
     /**
-     * 1. Если нижняя граница не равна верхней (если массив поделен до одного элемента),то
-     * 2. сортируем левую половину и правую половину
-     * 3. мёржим две половины
-     * <p>
-     *
-     * @param workSpace  - массив, на который ориентируемся
-     * @param lowerBound - нижняя граница
-     * @param upperBound - верхняя граница
+     * Идея алгоритма в том, чтобы не разбивать массив на половинки, а
+     * рассматривать его как уже разбитый подсписки длиной 1.
+     * Внешний цикл устанавливает размер подсписка = m и мёржит
+     * эти подсписки попарно
+     * @param workSpace исходный массив
+     * @param upperBound верхняя граница массива
      */
-    private static void recMergeSort(long[] workSpace, int lowerBound, int upperBound) {
-        if (lowerBound != upperBound) {
-            int mid = (lowerBound + upperBound) / 2;
-            recMergeSort(workSpace, lowerBound, mid);
-            recMergeSort(workSpace, mid + 1, upperBound);
-            merge(workSpace, lowerBound, mid + 1, upperBound);
-        }
+    
+    private static void iterMergeSort(long[] workSpace, int upperBound) {
+        for (int m = 1; m <= upperBound; m = m+m)
+            for (int i = 0; i <= upperBound-m; i += m+m)
+                merge(workSpace, i, i+m, Math.min(i+m+m-1, upperBound));
+
     }
 
-    /**
-     * реализовать версию merge которая копирует вторую половину массива a[] в temporary массив в
-     * убывающем порядке а затем слияние назад в a[].
-     * Это изменение позволяет не использовать во внутреннем цикле код проверки, не закончилась ли каждая половина
-     */
+    
     private static void merge(long[] workspace, int low, int high, int upperBound) {
         int j = 0;
         int lowerBound = low; //индекс нижней границы относительно исходного массива
