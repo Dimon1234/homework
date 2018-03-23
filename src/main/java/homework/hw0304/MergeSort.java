@@ -1,7 +1,7 @@
 package homework.hw0304;
 
 /**
- * Сортировка слиянием (нисходящая??)
+ * Нисходящая сортировка слиянием
  */
 public class MergeSort {
 
@@ -32,11 +32,11 @@ public class MergeSort {
      * @param upperBound - верхняя граница
      */
     private static void recMergeSort(long[] workSpace, int lowerBound, int upperBound) {
-        if (lowerBound != upperBound) {
-            int mid = (lowerBound + upperBound) / 2;
+        if (lowerBound < upperBound) {
+            int mid = lowerBound + (upperBound - lowerBound) / 2;
             recMergeSort(workSpace, lowerBound, mid);
             recMergeSort(workSpace, mid + 1, upperBound);
-            new Merge(array,workSpace, lowerBound, mid + 1, upperBound);
+            Merge.go(array, workSpace, lowerBound, mid, upperBound);
         }
     }
 

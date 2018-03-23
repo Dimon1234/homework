@@ -45,7 +45,7 @@ public class MergeSortV2 {
     private static void iterMergeSort(long[] workSpace, int upperBound) {
         for (int m = 1; m <= upperBound; m = m + m)
             for (int i = 0; i <= upperBound - m; i += m + m)
-               new Merge(array,workSpace, i, i + m, Math.min(i + m + m - 1, upperBound));
+                Merge.go(array, workSpace, i, i + m, Math.min(i + m + m - 1, upperBound));
 
     }
 
