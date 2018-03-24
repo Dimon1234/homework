@@ -6,9 +6,7 @@ public class Merge {
         int i = low;
         int j = mid + 1;
 
-        for (int k = low; k <= high; k++) {
-            workspace[k] = array[k];
-        }
+        System.arraycopy(array, low, workspace, low, high + 1 - low);
 
         for (int k = low; k <= high; k++) {
             if (i > mid) array[k] = workspace[j++];
@@ -16,7 +14,6 @@ public class Merge {
             else if (workspace[i] < workspace[j]) array[k] = workspace[i++];
             else array[k] = workspace[j++];
         }
-
 
     }
 }

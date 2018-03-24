@@ -1,3 +1,4 @@
+import homework.hw0304.MergeSort;
 import homework.hw0304.MergeSortV2;
 
 public class Main {
