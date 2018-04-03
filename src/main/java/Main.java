@@ -1,10 +1,13 @@
-import homework.hw0304.MergeSort;
-import homework.hw0304.MergeSortV2;
+import homework.hw0324.Tree;
 
 public class Main {
+
     public static void main(String[] args) {
-        long [] arr = new long[]{8,7,6,5,4,3,2,1};
-        MergeSortV2.getSortedArray(arr);
-        for (long a : arr) System.out.print(a+" ");
+        Tree<Integer, String> tree = new Tree<>(10,"I'm root");
+        tree.put(11,"11");
+        tree.put(1,"11");
+        tree.put(15,"11");
+
+        tree.printTree();
     }
 }
