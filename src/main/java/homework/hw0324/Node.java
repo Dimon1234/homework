@@ -1,17 +1,15 @@
 package homework.hw0324;
 
 
-//TODO поиск минимального
-//TODO поиск максимального
 //TODO поиск следующей ноды после заданного ключа, если нет, то выводить все поддерево
-//TODO добавление элементов
 //TODO удаление элементов
 //TODO балансировка
+
 
 /**
  * https://ru.wikipedia.org/wiki/%D0%90%D0%92%D0%9B-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE
  */
-class Node<T extends Comparable<T>, M> {
+public class Node<T extends Comparable<T>, M> {
 
     private T key;
     private M value;
@@ -41,11 +39,9 @@ class Node<T extends Comparable<T>, M> {
         return null;
     }
 
+
     /**
-     * Предполагается, что метод будет вызываться у корня
-     *
-     * @param key
-     * @return
+     * Вызывается у корня
      */
     public Node<T, M> find(T key) {
         return find(key, this, false);
@@ -66,9 +62,44 @@ class Node<T extends Comparable<T>, M> {
         return toAdd ? pointer : null;
     }
 
+    /**
+     * Вызывается у корня
+     *
+     * @return max node
+     */
+    public Node<T, M> findMax() {
+        if (this.getRight() == null) return this;
+        else return this.getRight().findMax();
+    }
 
     /**
-     * Getters & toString()
+     * Вызывается у корня
+     *
+     * @return min node
+     */
+    public Node<T, M> findMin() {
+        if (this.getLeft() == null) return this;
+        else return this.getLeft().findMin();
+    }
+
+
+    /**
+     * Print method
+     */
+    public void print(Node<T, M> node, int depth) {
+        if (node != null) {
+            print(node.getRight(), depth + 1);
+            for (int k = 0; k < depth; k++) {
+                System.out.print("    ");
+            }
+            System.out.println(node.getKey());
+            print(node.getLeft(), depth + 1);
+        }
+    }
+
+
+    /**
+     * Getters and Setters
      */
 
     public T getKey() {
@@ -101,7 +132,15 @@ class Node<T extends Comparable<T>, M> {
 
     @Override
     public String toString() {
-        return "Node{" +
+        if (isLeaf(this))
+            return "Node{" +
+                    "key=" + key +
+                    ", value=" + value +
+                    ", left=" + "null" +
+                    ", right=" + "null" +
+                    '}';
+
+        else return "Node{" +
                 "key=" + key +
                 ", value=" + value +
                 ", left=" + left.getKey() +
