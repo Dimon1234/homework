@@ -39,6 +39,28 @@ public class Node<T extends Comparable<T>, M> {
         return null;
     }
 
+    public Node<T, M> delete(Node<T, M> root, T key) {
+        if (root == null) return root;
+        if (key.compareTo(root.getKey()) < 0)
+            root.setLeft(delete(root.getLeft(), key));
+        else if (key.compareTo(root.getKey()) > 0)
+            root.setRight(delete(root.getRight(), key));
+        else if (root.getLeft() != null && root.getRight() != null) {
+            root.setKey(root.getRight().minNode().getKey());
+            root.setRight(delete(root.getRight(), root.getKey()));
+        }
+        else{
+            if (root.getLeft() != null) root = root.getLeft();
+            else root = root.getRight();
+        }
+        return root;
+    }
+
+    private Node<T, M> minNode() {
+        if (this.getLeft() == null && this.getRight() == null) return this;
+        else if (this.getLeft() == null) return this.getRight();
+        else return this.getLeft();
+    }
 
     /**
      * Вызывается у корня
@@ -128,6 +150,14 @@ public class Node<T extends Comparable<T>, M> {
 
     public void setRight(Node<T, M> right) {
         this.right = right;
+    }
+
+    public void setKey(T key) {
+        this.key = key;
+    }
+
+    public void setValue(M value) {
+        this.value = value;
     }
 
     @Override

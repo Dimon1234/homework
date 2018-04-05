@@ -18,6 +18,9 @@ public class Main {
 
         System.out.println(tree.getMin());
         System.out.println(tree.getMax());
+
+        tree.remove(10);
+        tree.printTree();
     }
 
 }

@@ -39,7 +39,7 @@ public class Tree<T extends Comparable<T>, M> {
 
     public void remove(T key)
     {
-        find(key);
+        root.delete(root, key);
     }
 
     public boolean isEmpty()
