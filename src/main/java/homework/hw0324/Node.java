@@ -2,12 +2,11 @@ package homework.hw0324;
 
 
 //TODO поиск следующей ноды после заданного ключа, если нет, то выводить все поддерево
-//TODO удаление элементов
 //TODO балансировка
 
 
 /**
- * https://ru.wikipedia.org/wiki/%D0%90%D0%92%D0%9B-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE
+ * @link https://ru.wikipedia.org/wiki/%D0%90%D0%92%D0%9B-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE
  */
 public class Node<T extends Comparable<T>, M> {
 
@@ -40,7 +39,7 @@ public class Node<T extends Comparable<T>, M> {
     }
 
     public Node<T, M> delete(Node<T, M> root, T key) {
-        if (root == null) return root;
+        if (root == null) return null;
         if (key.compareTo(root.getKey()) < 0)
             root.setLeft(delete(root.getLeft(), key));
         else if (key.compareTo(root.getKey()) > 0)
@@ -140,8 +139,8 @@ public class Node<T extends Comparable<T>, M> {
         return right;
     }
 
-    public boolean isLeaf(Node<T, M> node) {
-        return (node.getLeft() == null) && (node.getRight() == null);
+    public boolean isLeaf() {
+        return (this.getLeft() == null) && (this.getRight() == null);
     }
 
     public void setLeft(Node<T, M> left) {
@@ -162,15 +161,15 @@ public class Node<T extends Comparable<T>, M> {
 
     @Override
     public String toString() {
-        if (isLeaf(this))
-            return "Node{" +
+        if (isLeaf())
+            return "BalanceNode{" +
                     "key=" + key +
                     ", value=" + value +
                     ", left=" + "null" +
                     ", right=" + "null" +
                     '}';
 
-        else return "Node{" +
+        else return "BalanceNode{" +
                 "key=" + key +
                 ", value=" + value +
                 ", left=" + left.getKey() +

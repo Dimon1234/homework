@@ -35,25 +35,25 @@ class TreeTest {
     @Test
     void put() {
         tree.printTree();
-        tree.put(16,"I am new element");
+        tree.put(16, "I am new element");
         System.out.println("-----------------");
         tree.printTree();
     }
 
     @Test
     void remove() {
-        Assert.assertEquals(tree.find(9).getElement(),"9");
+        Assert.assertEquals(tree.find(9).getElement(), "9");
         tree.remove(9);
         Assert.assertEquals(tree.find(9), null);
     }
 
     @Test
     void getMin() {
-        Assert.assertEquals(tree.getMin().getElement(),"I am min");
+        Assert.assertEquals(tree.getMin().getElement(), "I am min");
     }
 
     @Test
     void getMax() {
-        Assert.assertEquals(tree.getMax().getElement(),"I am max");
+        Assert.assertEquals(tree.getMax().getElement(), "I am max");
     }
 }
