@@ -22,28 +22,25 @@ public class Tree<T extends Comparable<T>, M> {
         list.add(root);
     }
 
-    public Node<T,M> find(T key)
-    {
+    public Node<T, M> find(T key) {
         return root.find(key);
     }
 
 
-    public void put(T key, M value)
-    {
-        Node<T,M> newNode = new Node<>(key,value);
-        if (root.put(newNode))
-        {
+    public void put(T key, M value) {
+        Node<T, M> newNode = new Node<>(key, value);
+        Boolean flag = root.put(newNode);
+        if (flag == null) return;
+        if (flag) {
             list.add(newNode);
-        }else list.add(newNode);
+        } else list.add(newNode);
     }
 
-    public void remove(T key)
-    {
+    public void remove(T key) {
         root.delete(root, key);
     }
 
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return list.isEmpty();
     }
 
@@ -51,8 +48,7 @@ public class Tree<T extends Comparable<T>, M> {
      * Getters
      */
 
-    public Set<T> getKeySet()
-    {
+    public Set<T> getKeySet() {
         return list.stream().collect(Collectors.groupingBy(Node::getKey)).keySet();
     }
 
@@ -65,13 +61,11 @@ public class Tree<T extends Comparable<T>, M> {
         return root;
     }
 
-    public Node<T,M> getMin()
-    {
+    public Node<T, M> getMin() {
         return root.findMin();
     }
 
-    public Node<T,M> getMax()
-    {
+    public Node<T, M> getMax() {
         return root.findMax();
     }
 
